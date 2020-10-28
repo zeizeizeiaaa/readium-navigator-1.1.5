@@ -13,7 +13,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
@@ -25,8 +24,6 @@ import androidx.viewpager.widget.ViewPager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.json.JSONException
 import org.json.JSONObject
 import org.readium.r2.navigator.*
@@ -36,6 +33,9 @@ import org.readium.r2.navigator.pager.R2EpubPageFragment
 import org.readium.r2.navigator.pager.R2PagerAdapter
 import org.readium.r2.navigator.pager.R2ViewPager
 import org.readium.r2.shared.*
+import java.io.File
+import java.io.FileInputStream
+import java.io.ObjectInputStream
 import java.net.URI
 import kotlin.coroutines.CoroutineContext
 
@@ -257,11 +257,23 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
         resourcePager = findViewById(R.id.resourcePager)
         resourcePager.type = Publication.TYPE.EPUB
 
+        publicationPath = intent.getStringExtra("publicationPath") ?: throw Exception("publicationPath required")
+
+        val s = publicationPath.substring(0, publicationPath.lastIndexOf("/"))
+        val file = File(s, "pub")
+        if (file.exists()) {
+            val objectInputStream: ObjectInputStream
+            val fileInputStream = FileInputStream(file.toString())
+            objectInputStream = ObjectInputStream(fileInputStream)
+            publication = objectInputStream.readObject() as Publication
+            objectInputStream.close()
+            fileInputStream.close()
+        }
+
         resourcesSingle = ArrayList()
         resourcesDouble = ArrayList()
 
-        publicationPath = intent.getStringExtra("publicationPath") ?: throw Exception("publicationPath required")
-        publication = intent.getSerializableExtra("publication") as Publication
+//        publication = intent.getSerializableExtra("publication") as Publication
         publicationFileName = intent.getStringExtra("publicationFileName") ?: throw Exception("publicationFileName required")
         publicationIdentifier = publication.metadata.identifier!!
 
