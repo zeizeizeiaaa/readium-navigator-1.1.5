@@ -236,18 +236,18 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
 
     protected var navigatorDelegate: NavigatorDelegate? = null
 
-    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-    open fun onMainEvent(event: MessageEvent<Any?>?) {
-
-        if (event == null) {
-            return
-        }
-        when (event.message) {
-            "jumpToEpub" -> {
-                publication = event.data as Publication
-            }
-        }
-    }
+//    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+//    open fun onMainEvent(event: MessageEvent<Any?>?) {
+//
+//        if (event == null) {
+//            return
+//        }
+//        when (event.message) {
+//            "jumpToEpub" -> {
+//                publication = event.data as Publication
+//            }
+//        }
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -261,7 +261,7 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
         resourcesDouble = ArrayList()
 
         publicationPath = intent.getStringExtra("publicationPath") ?: throw Exception("publicationPath required")
-//        publication = intent.getSerializableExtra("publication") as Publication
+        publication = intent.getSerializableExtra("publication") as Publication
         publicationFileName = intent.getStringExtra("publicationFileName") ?: throw Exception("publicationFileName required")
         publicationIdentifier = publication.metadata.identifier!!
 
