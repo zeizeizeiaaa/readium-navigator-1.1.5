@@ -13,6 +13,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
@@ -24,6 +25,8 @@ import androidx.viewpager.widget.ViewPager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.json.JSONException
 import org.json.JSONObject
 import org.readium.r2.navigator.*
@@ -233,6 +236,19 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
 
     protected var navigatorDelegate: NavigatorDelegate? = null
 
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    open fun onMainEvent(event: MessageEvent<Any?>?) {
+
+        if (event == null) {
+            return
+        }
+        when (event.message) {
+            "jumpToEpub" -> {
+                publication = event.data as Publication
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_r2_viewpager)
@@ -245,7 +261,7 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
         resourcesDouble = ArrayList()
 
         publicationPath = intent.getStringExtra("publicationPath") ?: throw Exception("publicationPath required")
-        publication = intent.getSerializableExtra("publication") as Publication
+//        publication = intent.getSerializableExtra("publication") as Publication
         publicationFileName = intent.getStringExtra("publicationFileName") ?: throw Exception("publicationFileName required")
         publicationIdentifier = publication.metadata.identifier!!
 

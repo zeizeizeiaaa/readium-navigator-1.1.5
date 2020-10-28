@@ -16,11 +16,13 @@ group='com.github.zeizeizeiaaa'
 android {
 
     compileSdkVersion 29
+
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 29
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
@@ -62,6 +64,8 @@ dependencies {
     implementation 'org.zeroturnaround:zt-zip:1.13'
 
     implementation 'org.jsoup:jsoup:1.10.3'
+
+    implementation "org.greenrobot:eventbus:3.0.0"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
