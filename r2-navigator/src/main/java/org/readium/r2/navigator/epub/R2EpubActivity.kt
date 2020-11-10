@@ -116,14 +116,14 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
             }
         }
 
-//        if (supportActionBar!!.isShowing && allowToggleActionBar) {
+        if (isControl && allowToggleActionBar) {
             resourcePager.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                     or View.SYSTEM_UI_FLAG_IMMERSIVE)
-//        }
+        }
 
         return true
     }
@@ -225,11 +225,13 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
     override var bookId: Long = -1
 
     override var allowToggleActionBar = true
+    var isControl = false
 
     private lateinit var resourcesSingle: ArrayList<Pair<Int, String>>
     private lateinit var resourcesDouble: ArrayList<Triple<Int, String, String>>
 
     var pagerPosition = 0
+
 
     var currentPagerPosition: Int = 0
     lateinit var adapter: R2PagerAdapter
@@ -463,14 +465,14 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
                     }
                 }
 
-//                if (supportActionBar!!.isShowing && allowToggleActionBar) {
+                if (isControl && allowToggleActionBar) {
                     resourcePager.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                             or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                             or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                             or View.SYSTEM_UI_FLAG_IMMERSIVE)
-//                }
+                }
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
@@ -481,7 +483,7 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
     override fun toggleActionBar() {
         if (allowToggleActionBar) {
             launch {
-                if (supportActionBar!!.isShowing) {
+                if (isControl) {
                     resourcePager.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                             or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
