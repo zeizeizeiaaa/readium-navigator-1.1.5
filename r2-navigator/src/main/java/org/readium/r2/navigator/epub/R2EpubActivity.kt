@@ -225,7 +225,7 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
     override var bookId: Long = -1
 
     override var allowToggleActionBar = true
-    var isControl = false
+    var isControl = true
 
     private lateinit var resourcesSingle: ArrayList<Pair<Int, String>>
     private lateinit var resourcesDouble: ArrayList<Triple<Int, String, String>>
