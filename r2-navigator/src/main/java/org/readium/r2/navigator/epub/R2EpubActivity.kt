@@ -116,14 +116,14 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
             }
         }
 
-        if (supportActionBar!!.isShowing && allowToggleActionBar) {
+//        if (supportActionBar!!.isShowing && allowToggleActionBar) {
             resourcePager.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                     or View.SYSTEM_UI_FLAG_IMMERSIVE)
-        }
+//        }
 
         return true
     }
@@ -235,19 +235,6 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
     lateinit var adapter: R2PagerAdapter
 
     protected var navigatorDelegate: NavigatorDelegate? = null
-
-//    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-//    open fun onMainEvent(event: MessageEvent<Any?>?) {
-//
-//        if (event == null) {
-//            return
-//        }
-//        when (event.message) {
-//            "jumpToEpub" -> {
-//                publication = event.data as Publication
-//            }
-//        }
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -476,14 +463,14 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
                     }
                 }
 
-                if (supportActionBar!!.isShowing && allowToggleActionBar) {
+//                if (supportActionBar!!.isShowing && allowToggleActionBar) {
                     resourcePager.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                             or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                             or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                             or View.SYSTEM_UI_FLAG_IMMERSIVE)
-                }
+//                }
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
