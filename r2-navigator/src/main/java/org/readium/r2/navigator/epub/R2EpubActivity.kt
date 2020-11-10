@@ -119,15 +119,16 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
         if (isControl && allowToggleActionBar) {
             resourcePager.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
+                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                    or View.SYSTEM_UI_FLAG_IMMERSIVE)
         }
 
         return true
     }
 
-//    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-//    or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-//    or View.SYSTEM_UI_FLAG_IMMERSIVE)
+
     override fun go(link: Link, animated: Boolean, completion: () -> Unit): Boolean {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -468,17 +469,17 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
                 if (isControl && allowToggleActionBar) {
                     resourcePager.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
-
+                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                            or View.SYSTEM_UI_FLAG_IMMERSIVE)
                 }
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-//    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//    or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-//    or View.SYSTEM_UI_FLAG_IMMERSIVE)
+
 
     override fun toggleActionBar() {
         if (allowToggleActionBar) {
@@ -486,7 +487,10 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
                 if (isControl) {
                     resourcePager.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
+                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                            or View.SYSTEM_UI_FLAG_IMMERSIVE)
                 } else {
                     resourcePager.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -495,10 +499,6 @@ open class R2EpubActivity : AppCompatActivity(), IR2Activity, IR2Selectable, IR2
             }
         }
     }
-
-//                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-//                            or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-//                            or View.SYSTEM_UI_FLAG_IMMERSIVE)
 
     override fun currentSelection(callback: (Locator?) -> Unit) {
         val currentFragment = ((resourcePager.adapter as R2PagerAdapter).mFragments.get((resourcePager.adapter as R2PagerAdapter).getItemId(resourcePager.currentItem))) as? R2EpubPageFragment
