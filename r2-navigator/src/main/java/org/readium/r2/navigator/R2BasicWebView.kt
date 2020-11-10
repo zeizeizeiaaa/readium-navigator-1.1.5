@@ -67,7 +67,9 @@ open class R2BasicWebView(context: Context, attrs: AttributeSet) : WebView(conte
         }
         super.onOverScrolled(scrollX, scrollY, clampedX, clampedY)
     }
-
+//    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//    or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+//    or View.SYSTEM_UI_FLAG_IMMERSIVE
 
     @android.webkit.JavascriptInterface
     open fun scrollRight(animated: Boolean = false) {
@@ -76,9 +78,7 @@ open class R2BasicWebView(context: Context, attrs: AttributeSet) : WebView(conte
                 listener.resourcePager?.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-//                        or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-//                        or View.SYSTEM_UI_FLAG_IMMERSIVE)
+)
 //            }
             val scrollMode = listener.preferences.getBoolean(SCROLL_REF, false)
             if (scrollMode) {
@@ -99,7 +99,9 @@ open class R2BasicWebView(context: Context, attrs: AttributeSet) : WebView(conte
             }
         }
     }
-
+//    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//    or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+//    or View.SYSTEM_UI_FLAG_IMMERSIVE
     @android.webkit.JavascriptInterface
     open fun scrollLeft(animated: Boolean = false) {
         uiScope.launch {
@@ -107,9 +109,7 @@ open class R2BasicWebView(context: Context, attrs: AttributeSet) : WebView(conte
                 listener.resourcePager?.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-//                        or View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-//                        or View.SYSTEM_UI_FLAG_IMMERSIVE)
+)
 //            }
             val scrollMode = listener.preferences.getBoolean(SCROLL_REF, false)
             if (scrollMode) {
