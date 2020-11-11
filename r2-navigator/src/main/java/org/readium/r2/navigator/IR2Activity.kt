@@ -25,7 +25,6 @@ interface IR2Activity {
     val publicationFileName: String
     val publicationPath: String
     val bookId: Long
-    val isControl: Boolean
     val resourcePager: R2ViewPager?
         get() = null
     val allowToggleActionBar: Boolean
