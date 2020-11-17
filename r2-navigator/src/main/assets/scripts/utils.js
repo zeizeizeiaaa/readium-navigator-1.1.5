@@ -25,6 +25,8 @@ function isScrollModeEnabled() {
 window.addEventListener('scroll', function(e) {
     last_known_scrollY_position = window.scrollY / document.scrollingElement.scrollHeight;
     last_known_scrollX_position = Math.abs(window.scrollX / document.scrollingElement.scrollWidth);
+    console.log("window.scrollX " + window.scrollX);
+    console.log("document.scrollingElement.scrollWidth " + document.scrollingElement.scrollWidth);
     console.log("last_known_scrollX_position " + last_known_scrollX_position);
     console.log("last_known_scrollY_position " + last_known_scrollY_position);
     if (!ticking) {
